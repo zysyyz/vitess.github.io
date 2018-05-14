@@ -10,6 +10,11 @@ const RFC5646_TAGS = require('./rfc5646');
 
 const Pattern = util.Pattern;
 
+let insightCfg = hexo.config.jsonContent || {meta:true},
+               ignore = insightCfg.ignore ? insightCfg.ignore.map(item => item.toLowerCase()) : [];
+
+const logger = require('hexo-log')();
+
 function pathJoin(...paths) {
     return paths.join('/');
 }
@@ -88,8 +93,12 @@ function isDefaultLanguage(language) {
 
 function postFilter(language) {
     return function (post) {
+        //过滤ignore
+        let path = post.path.toLowerCase();
+        // let result = !ignore.find(item => path.includes(item));
+        // logger.info(`postFilter:${path} , ${result}`);
         let lang = getPageLanguage(post);
-        return lang === language || (isDefaultLanguage(language) && !lang);
+        return !ignore.find(item => path.includes(item)) && (lang === language || (isDefaultLanguage(language) && !lang));
     }
 }
 
