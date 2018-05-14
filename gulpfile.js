@@ -23,7 +23,7 @@ var gulp = require('gulp');
              minifyCSS: true,
              minifyURLs: true,
         }))
-        .pipe(gulp.dest('public/**'))
+        .pipe(gulp.dest('public'))
     });
 
     // 压缩 public 目录 html文件
@@ -36,7 +36,7 @@ var gulp = require('gulp');
              minifyCSS: true,
              minifyURLs: true,
         }))
-        .pipe(gulp.dest('public/**/**'))
+        .pipe(gulp.dest('public'))
     });
 
 
@@ -50,7 +50,7 @@ var gulp = require('gulp');
              minifyCSS: true,
              minifyURLs: true,
         }))
-        .pipe(gulp.dest('public/**/**/**'))
+        .pipe(gulp.dest('public'))
     });
 
     // 压缩 public 目录 html文件
