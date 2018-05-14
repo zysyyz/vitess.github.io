@@ -104,6 +104,21 @@ figure.highlight .link {
 body, button, input, select, textarea {
   font-family: "Ovo", "Georgia", "STZhongsong", "Microsoft YaHei", serif; }
 
+.pace .pace-progress {
+  background: #3273dc;
+  /*进度条颜色*/
+  height: 2px; }
+
+.pace .pace-progress-inner {
+  box-shadow: 0 0 10px #3273dc, 0 0 5px     #1E92FB;
+  /*阴影颜色*/ }
+
+.pace .pace-activity {
+  border-top-color: #3273dc;
+  /*上边框颜色*/
+  border-left-color: #3273dc;
+  /*左边框颜色*/ }
+
 a.tag.article-tag {
   font-size: 0.9rem;
   text-decoration: none; }
@@ -125,20 +140,6 @@ a.tag.article-tag {
     text-align: center; }
   .navbar-main a.navbar-item.is-active {
     color: #3273dc; }
-  .navbar-main .navbar-title {
-    box-sizing: inherit;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    text-align: center;
-    color: #fff;
-    position: relative;
-    padding-left: 2em;
-    padding-right: 2em;
-    min-height: 2rem; }
 
 .article + .article {
   padding-top: 2rem;
