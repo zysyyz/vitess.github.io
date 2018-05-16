@@ -8,7 +8,7 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time class="article-time" datetime="<%= date_xml(post.date) %>" itemprop="datePublished"><%= from_now(post.date) %></time>
+            <time class="article-time" datetime="<%= date_xml(post.date) %>" itemprop="datePublished"></time>
         </span>
         <% if (post.categories && post.categories.length){ %>
         <span class="column is-narrow article-category">
@@ -74,5 +74,5 @@
 
 <!-- 文章时间 -->
 <script>
-    setArticleTime("<%= post.date %>")();
+    setArticleTime("<%= post.date %>");
 </script>
