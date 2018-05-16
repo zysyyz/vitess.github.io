@@ -57,6 +57,11 @@
         </span>
     </div>
     <% } %>
+
+    <!-- 文章时间 -->
+    <script>
+        setArticleTime("article-time-<%= post.abbrlink %>","<%= post.date %>");
+    </script>
 </article>
 
 <% if (!index && has_config('share.type')) { %>
@@ -71,8 +76,3 @@
     <%- partial('comment/' + get_config('comment.type')) %>
 </div>
 <% } %>
-
-<!-- 文章时间 -->
-<script>
-    setArticleTime("article-time-<%= post.abbrlink %>","<%= post.date %>");
-</script>
