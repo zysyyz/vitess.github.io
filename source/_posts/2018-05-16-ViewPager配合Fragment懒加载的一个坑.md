@@ -2,7 +2,7 @@
 title: ViewPager配合Fragment懒加载的一个坑
 comments: true
 categories:
-  - 骚灵
+  - 开发
 toc: true
 tags:
   - Android
