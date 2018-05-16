@@ -21,7 +21,7 @@
 <% } %>
 
 <% if (has_config('favicon')) { %>
-<link rel="icon" href="<%- get_config('favicon') %>">
+<link rel="icon" href="<%= get_config('url') %>/<%- get_config('favicon') %>">
 <% } %>
 
 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
