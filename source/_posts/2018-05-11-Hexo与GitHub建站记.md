@@ -22,7 +22,7 @@ date: 2018-05-11 17:27:41
 
 创建好之后进入该项目的Settings，找到GitHub Pages
 
-![](https://ww1.sinaimg.cn/large/8d7d5e66gy1fr7jdanmtrj20ld0hldhh.jpg)
+![](http://p8k21iah8.bkt.clouddn.com/Fv6fLfGkjoe_cIUw_MirwssynDDt.png)
 
 这里要选择自己的显示的分支，网上有人说一定要建gh-pages分支，其实没必要。另外Save之后就无法修改了，所以这里要注意一下。
 
@@ -44,7 +44,7 @@ date: 2018-05-11 17:27:41
 
 添加完之后点进去，就可以添加记录：
 
-![](https://ws1.sinaimg.cn/large/8d7d5e66gy1fr7jj52ninj20nn0ao75p.jpg)
+![](http://p8k21iah8.bkt.clouddn.com/FrX51xemjNWV6yj0oFZOhehQRQcw.png)
 
 网上一些帖子告诉你这里填的A记录的IP是错的，现在由于要使用HTTPS，所以要用[troubleshooting-custom-domains](https://help.github.com/articles/troubleshooting-custom-domains/)这个页面内提供的四个IP：
 
@@ -57,7 +57,7 @@ date: 2018-05-11 17:27:41
 
 之后要去自己买的域名的控制台那边修改DNS域：
 
-![](https://ws1.sinaimg.cn/large/8d7d5e66gy1fr7jjei9osj20xg0jyt9l.jpg)
+![](http://p8k21iah8.bkt.clouddn.com/Fq8ibWunYrkeoplZvENfB9_KNlPt.png)
 
 图上是修改好的样子。
 
