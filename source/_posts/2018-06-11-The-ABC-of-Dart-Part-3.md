@@ -140,11 +140,11 @@ class TestClass{
 }
 
 //生成对象
-//const var obj1 = new TestClass(1,2); //报错
-const var obj1 = const TestClass.second(1,2); //(1)
-final var obj2 = const TestClass.second(1,2); //(2)
-final var obj3 = new TestClass(1,2);          //(3)
-const var obj4 = new TestClass.second(1,2);   //(4)
+//const TestClass obj1 = new TestClass(1,2); //报错
+const TestClass obj1 = const TestClass.second(1,2); //(1)
+final TestClass obj2 = const TestClass.second(1,2); //(2)
+final TestClass obj3 = new TestClass(1,2);          //(3)
+var obj4 = new TestClass.second(1,2);   //(4)
 ```
 
 如上，除了注释掉的那一行会报错的以外，(1)、(2)、(3)、(4)行都可以编译运行。其中，被`const`所修饰的常量，赋值时必须用`const`来生成对象，不能用`new`；反过来，`final`所修饰的对象，用`const`或者`new`来生成对象都可以。
@@ -220,8 +220,172 @@ print(testClass.myP2); //调用Getter方法myP2，打印2
 
 前面说到，每个成员变量有其隐式的Getter和Setter，所以当我们自定义Getter、Setter时，命名不能用和成员变量一样的名字。
 
+## extends & implements
+
+类的继承通过`extends`关键字来实现，基本实现和操作跟`Java`大致相同。
+
+```dart
+class BaseClass{
+    void func1(){
+        //TODO
+    }
+    
+    void func2(){
+        //TODO
+    }
+}
+
+class TestClass extends BaseClass{
+    @override
+    void func1(){
+        super.func1();
+    }
+}
+```
+
+如上，`TestClass`集成了`BaseClass`，因此可以选择性地改写`BaseClass`的方法。
+
+而实现接口则通过`implements`关键字实现，与`Java`不同的是`dart`没有`interface`这个关键字，因为每一个类都是一个**隐式接口**。以上面的`BaseClass`为例：
+
+```dart
+class TestClass2 implements BaseClass{
+    @override
+    void func1(){
+    }
+    
+    @override
+    void func2(){
+    }
+}
+```
+
+`TestClass2`通过`implements`实现了`BaseClass`内定义的方法`func1()`、`func2()`，虽然`BaseClass`在`func1()`、`func2()`里都有定义内容，但通过`implements`实现后，`TestClass2`并不会像`extends`一样默认执行`BaseClass`的方法。
+
 ## 抽象类
 
-抽象类
+抽象类通过`abstract`关键字修饰类：
 
-# 未完待续
+```dart
+abstract class BaseClass{
+    void func();
+}
+
+class TestClass extends BaseClass{
+    @override
+    void func(){
+    }
+}
+
+class TestClass2 implements BaseClass{
+    @override
+    void func(){
+    }
+}
+```
+
+可以看出，抽象类在继承和实现接口上并没有什么区别，都是强制要求实现抽象类中定义的函数。
+
+和`Java`不同，`dart`只有抽象类，没有抽象方法。
+
+## mixin(混合)
+
+我们知道，实现接口时可以`implements`多个接口，每个接口用逗号隔开：
+
+```dart
+class TestClass implements BaseClass1,BaseClass2{
+    ...
+}
+```
+
+而继承只能继承一个类。某些时候，可能我们希望能继承多个类，不同的方法用不同类的实现方式——这时候，就可以使用`dart`提供的mixin(混合)模式。
+
+mixin通过`with`关键字来实现。举个例子，现在分别有两个类`ClassA`和`ClassB`，通过这两个类组合成一个新的类`ClassC`，则表现为：
+
+> ClassC = ClassA with ClassB
+
+假设`ClassA`中所有方法的集合为\\(F_{A}\\)，`ClassB`中所有方法的集合为\\(F_{B}\\)，`ClassC`中所有方法的集合为\\(F_{C}\\)，则可理解为：
+
+$$F_{C}=F_{B} \cup (F_{A}-F_{B})$$
+
+即`ClassC`中的所有方法为`ClassA`和`ClassB`的方法的集合，如果`ClassA`和`ClassB`中有重复的方法，则取`ClassB`的实现：
+
+```dart
+class ClassA{
+    void func1(){
+        print("ClassA func1");	
+    }
+    
+    void func2(){
+        print("ClassA func2");
+    }
+}
+
+class ClassB{
+    void func1(){
+        print("ClassB func1");
+    }
+}
+
+class ClassC = ClassA with ClassB;
+
+void main(){
+    ClassC classC = new ClassC();
+    classC.func1();//输出ClassB func1
+    classC.func2();//输出ClassA func2
+}
+```
+
+`with`关键字也可以通过逗号混合多个类。例如，目前分别有`ClassA`、`ClassB`、`ClassC`三个类，将该三个类组合成一个新类`ClassD`：
+
+> ClassD = ClassA with ClassB,ClassC
+
+这就相当于按顺序调用`with`：
+
+> ClassD = (ClassA with ClassB) with ClassC
+
+例子如下：
+
+```dart
+class ClassA{
+    void func1(){
+        print("ClassA func1");	
+    }
+    
+    void func2(){
+        print("ClassA func2");
+    }
+    
+    void func3(){
+        print("ClassA func3");
+    }
+}
+
+class ClassB{
+    void func1(){
+        print("ClassB func1");
+    }
+    
+    void func2(){
+        print("ClassB func2");
+    }
+}
+
+class ClassC{
+    void func1(){
+        print("ClassC func1");
+    }
+}
+
+class ClassD = ClassA with ClassB,ClassC;
+
+void main(){
+    ClassD classD = new ClassD();
+    classD.func1();//输出ClassC func1
+    classD.func2();//输出ClassB func2
+    classD.func3();//输出ClassA func3
+}
+```
+
+## 工厂构造函数
+
+使用`factory`修饰构造函数，具体意义不多说了，网上给出的例子都是方便调用者可以使用同一个对象，并不是单纯意义上的工厂设计模式。
