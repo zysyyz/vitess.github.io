@@ -1,5 +1,5 @@
 ---
-title: The ABC of Dart Part 7
+title: The ABC of Dart Part 7 - 异步
 comments: true
 categories:
   - 开发
@@ -9,8 +9,6 @@ tags:
 abbrlink: ba35e115
 date: 2018-08-13 14:10:12
 ---
-
-# 异步
 
 `Dart`中没有线程这种概念，或者说对线程进行了包装，调用者无法对线程进行直接的操作。所以`Dart`为异步操作提供了一些对应的API和关键字，分别有：
 
@@ -22,7 +20,7 @@ date: 2018-08-13 14:10:12
 
 <!-- more -->
 
-## `async`和`await`
+# `async`和`await`
 
 `async`和`await`组合可以实现异步功能，并且使得代码看上去像是同步流程一样（网上说的）。
 
@@ -158,7 +156,7 @@ async end:2018-08-13 18:23:17.108346
 
 可以看出打印不同了。`callSleep`需要等到`callSleep2`的异步执行完毕之后才能继续执行。
 
-## Future API
+# Future API
 
 事实上，`Dart`中的异步执行操作都是依靠`Future`来实现的，即便是上述的`async`和`await`关键字，最终操作的依然是`Future`。
 
@@ -244,7 +242,7 @@ catch error:Invalid argument(s): Custom Error
 
 可以看到，如果`Future`内部出现了异常，将不会返回结果到`then()`中的第一个函数，而是将异常返回给第二个`onError`函数。
 
-### then()的链式调用
+## then()的链式调用
 
 有时候我们可能需要在`Future`之后执行多步操作，并且每一步操作都依赖于上一步的结果。对此我们当然可以把相关操作写在同一个`then()`里面。但是`Dart`提供了对应的链式调用，使得我们可以用多个`then()`将不同的操作串联起来：
 
@@ -291,13 +289,13 @@ third then:4, time:2018-08-16 15:53:54.034651
 
 `Future`还有许多API，可以配合链式调用随意组合，具体的就不细说了。
 
-## 函数生成器
+# 函数生成器
 
 函数生成器是指利用惰性函数计算结果序列，以提升性能。就我的理解而言，类似于在函数内生成一个闭包，然后可以经过循环得到一系列结果，但结果并不是一次性返回，而是像一段数据流一样每次返回一个结果。
 
 具体使用场景，自己还没想到，也许在一些需要递归或者循环调用返回的场景能用到吧。
 
-### 同步生成器`sync*`
+## 同步生成器`sync*`
 
 使用`sync*`修饰函数时，函数将自动返回一个`Iterable`类型的实例，并可以根据该实例获取`Iterator`类型的迭代器。通过迭代器的函数`moveNext()`判断是否存在下一个值，通过`current`获取下一个值。
 
@@ -374,11 +372,11 @@ syncGenerator start
 syncGenerator end
 ```
 
-### 异步生成器`async*`
+## 异步生成器`async*`
 
 异步生成器的原理和同步生成器基本相同，不同的是由于异步生成器运行在异步环境，因此返回的不是`Iterable`而是`Stream`。因此这里涉及到了`Stream`的相关操作和API。
 
-#### Stream API
+### Stream API
 
 `Stream`表示一个数据的流，关于流的概念和其他语言里的流的理解基本相同（比如Java8中的Stream），这里引用一下[`Java`中对`Stream`的定义](https://www.ibm.com/developerworks/cn/java/j-lo-java8streamapi/)：
 

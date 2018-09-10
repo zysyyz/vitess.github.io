@@ -1,5 +1,5 @@
 ---
-title: The-ABC-of-Dart-Part-4
+title: The ABC of Dart Part 4 - 集合
 comments: true
 categories:
   - 开发
@@ -10,13 +10,11 @@ abbrlink: a2cf4cff
 date: 2018-08-02 19:57:41
 ---
 
-# 集合(Collection)
-
 `Dart`中提供的集合容器分别是我们常见的`List`、`Map`、`Set`，但它也只有这三种类型的集合，并不像其他语言会细分到`ArrayList`、`LinkedList`之类的。
 
 <!-- more -->
 
-## List(列表 & 数组)
+# List(列表 & 数组)
 
 在`Dart`中没有数组的概念，取而代之的是用`List`来代替数组的功能。
 
@@ -53,7 +51,7 @@ list[1] = 4;
 
 最主要的是以上几点，其他的像`List`的其他构造函数、其他使用方法，在源代码中的`list.dart`中描述得很详细了，可以对照着使用。
 
-## Map
+# Map
 
 `Map`的初始化也和其他类相似，当然它也有简略的方式：
 
@@ -80,7 +78,7 @@ map["b"] = 3;
 
 和`List`不同的是，中括号中的是`Map`里的key，而`List`是对应的序号。
 
-## Set
+# Set
 
 `Set`是无序的，并且内部元素在`Set`中是唯一的。因此，`Set`无法像`List`一样通过序号来访问数据；还有一点，`Set`没有像`List`那样的简略的构造方式：
 

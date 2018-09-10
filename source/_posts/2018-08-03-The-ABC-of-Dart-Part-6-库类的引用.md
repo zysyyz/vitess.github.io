@@ -1,5 +1,5 @@
 ---
-title: The ABC of Dart Part 6
+title: The ABC of Dart Part 6 - 库类的引用
 comments: true
 categories:
   - 开发
@@ -10,8 +10,6 @@ tags:
   - Dart
 ---
 
-# 库类的引用
-
 `Dart`中除了最基本的类型对象外，还提供了很多不同功能的库或类，比如一些异步操作、IO操作等等，这些都被一一封装到`Dart`的SDK中，由一个个独立的.dart文件承载着。
 
 <!-- more -->
@@ -20,7 +18,7 @@ tags:
 
 > 目前我使用的Android Studio 3.1.3，比较不好的一点是写`Dart`时不能像`Java`一样自动引用对应的库。
 
-## Pub包管理器
+# Pub包管理器
 
 了解库类的引用前，先学习一下`Dart`中的Pub包管理器。
 
@@ -43,7 +41,7 @@ deppendencies:
 
 关于更多的有关pub的操作（例如配置项目资源、使用pub的命令行命令等）就不再阐述，此类操作可以等需要用到时再查找。
 
-## import
+# import
 
 `Dart`中的`import`用法和`Java`基本相同，不同的是`import`后缀的引用路径：
 
@@ -66,7 +64,7 @@ import 'package:test/lib1.dart';
 
 其中通过包命+路径的引用方式，结合上述的Pub，可知我在本项目中的pubspec.yaml里引用了一个名为`test`的包，则我可以在项目内的.dart文件里通过前缀`package:`加上包名+库类在该包内的路径来引用相应的库类。
 
-### 命名冲突
+## 命名冲突
 
 很多时候，我们引用的库类可能存在名称相同的情况，比如：
 
@@ -92,7 +90,7 @@ lib2.MyClass myClass2 = new lib2.MyClass();
 
 如上，通过声明不同的命名空间，则可以在调用时通过对应的命名空间即可。
 
-### 部分引用
+## 部分引用
 
 有时候，我们可能只希望引用一个.dart文件中的某些库类，而不是引用其全部内容，则可以通过关键字`show`和`hide`来实现。
 
@@ -103,7 +101,7 @@ import 'p1/lib1.dart' show MyClass1,MyClass2;
 import 'p2/lib2.dart' hide MyClass3;
 ```
 
-## library
+# library
 
 `library`关键字可以定义一个.dart文件（即一个库）的名字，但不影响库的引用，因为引用都是通过文件路径。
 
@@ -132,7 +130,7 @@ part of math;
 
 关于`library`、`part`、`part of`，可以再看看`Dart`的SDK，里面的很多库都是通过这种方式实现的。
 
-## export
+# export
 
 `export`的使用方式和`import`相同，但是意义却不一样。它表示在一个库中导出另一个库，这样当第三个库引用第一个库时，也能引用到第二个库的内容。
 

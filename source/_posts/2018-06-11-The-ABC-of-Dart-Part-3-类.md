@@ -1,5 +1,5 @@
 ---
-title: The ABC of Dart Part 3
+title: The ABC of Dart Part 3 - 类
 comments: true
 categories:
   - 开发
@@ -9,8 +9,6 @@ tags:
 abbrlink: bd58250c
 date: 2018-06-11 11:27:06
 ---
-
-# 类 - Class
 
 前面说到`Dart`中一切皆为对象。而所有对象都是类的实例，并且所有类都为`Object`的子类。
 
@@ -24,7 +22,7 @@ class TestClass{
 
 <!-- more -->
 
-## 构造函数
+# 构造函数
 
 `Dart`具有构造函数，跟`C++`不一样，没有析构函数。
 
@@ -43,7 +41,7 @@ class TestClass{
 }
 ```
 
-## 没有函数重载！
+# 没有函数重载！
 
 `Dart`中没有函数重载功能，当在同一个类中定义了一个名为`func`的函数后，后面不能再定义一个名字相同、但返回类型和参数类型不同的函数。
 
@@ -61,7 +59,7 @@ class TestClass{
 
 如上述代码，IDE会提示错误，不允许编译。
 
-## 命名构造函数
+# 命名构造函数
 
 那么，如果一个类确实需要多个构造函数时该怎么做呢？`Dart`提供了**命名构造函数**，即构造函数可以定义不同的名字，通过`.`来实现，如：
 
@@ -77,7 +75,7 @@ class TestClass{
 
 通过**命名构造函数**，可以实现如其他语言中类的构造函数重载的功能。
 
-## 生成对象
+# 生成对象
 
 生成一个类的实例对象，通过`new`关键字实现，如下：
 
@@ -86,7 +84,7 @@ var obj1 = new TestClass(); //默认的构造函数
 var obj2 = new TestClass.second(1); //自定义命名的构造函数
 ```
 
-## 构造函数传参
+# 构造函数传参
 
 `Dart`中的类和`Java`一样，通过`this`关键字指向实例自身，因此标准的构造函数传参和`Java`一致：
 
@@ -124,7 +122,7 @@ class TestClass{
 
 > 值得一提的是，在构造函数中也可以使用可选参数来定义参数。
 
-## 生成不可变的对象
+# 生成不可变的对象
 
 `Dart`中可以用`const`修饰构造函数，这样通过该构造函数构建出来的对象是不可变的对象，此类对象可以赋值给`final`或`const`修饰的常量。
 
@@ -166,7 +164,7 @@ class TestClass{
 
 上述代码中，因为变量`p2`被修饰为`final`，所以必须用简写模式赋值。
 
-## Getter & Setter
+# Getter & Setter
 
 在`Dart`中，类中的成员变量、成员函数不存在*访问权限*这个概念，像`Java`中的`private`、`public`之类的并不存在。
 
@@ -220,7 +218,7 @@ print(testClass.myP2); //调用Getter方法myP2，打印2
 
 前面说到，每个成员变量有其隐式的Getter和Setter，所以当我们自定义Getter、Setter时，命名不能用和成员变量一样的名字。
 
-## extends & implements
+# extends & implements
 
 类的继承通过`extends`关键字来实现，基本实现和操作跟`Java`大致相同。
 
@@ -261,7 +259,7 @@ class TestClass2 implements BaseClass{
 
 `TestClass2`通过`implements`实现了`BaseClass`内定义的方法`func1()`、`func2()`，虽然`BaseClass`在`func1()`、`func2()`里都有定义内容，但通过`implements`实现后，`TestClass2`并不会像`extends`一样默认执行`BaseClass`的方法。
 
-## 抽象类
+# 抽象类
 
 抽象类通过`abstract`关键字修饰类：
 
@@ -287,7 +285,7 @@ class TestClass2 implements BaseClass{
 
 和`Java`不同，`dart`只有抽象类，没有抽象方法。
 
-## mixin(混合)
+# mixin(混合)
 
 我们知道，实现接口时可以`implements`多个接口，每个接口用逗号隔开：
 
@@ -386,6 +384,6 @@ void main(){
 }
 ```
 
-## 工厂构造函数
+# 工厂构造函数
 
 使用`factory`修饰构造函数，具体意义不多说了，网上给出的例子都是方便调用者可以使用同一个对象，并不是单纯意义上的工厂设计模式。

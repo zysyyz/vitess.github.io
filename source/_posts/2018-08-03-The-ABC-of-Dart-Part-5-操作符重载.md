@@ -1,5 +1,5 @@
 ---
-title: The ABC of Dart Part 5
+title: The ABC of Dart Part 5 - 操作符重载
 comments: true
 categories:
   - 开发
@@ -9,8 +9,6 @@ tags:
 abbrlink: 543b8039
 date: 2018-08-03 11:28:32
 ---
-
-# 操作符重载
 
 `Dart`可以像C语言一样重载部分操作符。支持重载的操作符有：
 
