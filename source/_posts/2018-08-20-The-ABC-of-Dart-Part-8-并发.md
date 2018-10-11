@@ -10,7 +10,7 @@ abbrlink: 2a8afc84
 date: 2018-08-31 17:39:51
 ---
 
-说到`Dart`中的并发，这里需要先介绍一下`Dart`中的异步机制，以下内容转自[Dart异步任务与消息循环机制](https://segmentfault.com/a/1190000008800122)，官网原文：https://webdev.dartlang.org/articles/performance/event-loop
+说到`Dart`中的并发，这里需要先介绍一下`Dart`中的异步机制，以下内容转自[Dart异步任务与消息循环机制](https://segmentfault.com/a/1190000008800122)
 
 # Dart与消息循环机制
 
