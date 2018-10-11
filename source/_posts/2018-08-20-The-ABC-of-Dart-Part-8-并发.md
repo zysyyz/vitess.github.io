@@ -10,7 +10,7 @@ abbrlink: 2a8afc84
 date: 2018-08-31 17:39:51
 ---
 
-说到`Dart`中的并发，这里需要先介绍一下`Dart`中的异步机制，以下内容转自[Dart异步任务与消息循环机制](https://segmentfault.com/a/1190000008800122)
+说到`Dart`中的并发，这里需要先介绍一下`Dart`中的异步机制，以下内容转自[Dart异步任务与消息循环机制](https://segmentfault.com/a/1190000008800122)，官网原文：https://webdev.dartlang.org/articles/performance/event-loop
 
 # Dart与消息循环机制
 
@@ -32,11 +32,11 @@ date: 2018-08-31 17:39:51
 
 一个消息循环的职责就是不断从消息队列中取出消息并处理他们直到消息队列为空。
 
-![](http://7xprgn.com1.z0.glb.clouddn.com/event-loop.png)
+![](https://webdev.dartlang.org/articles/performance/images/event-loop.png)
 
 消息队列中的消息可能来自用户输入，文件I/O消息，定时器等。例如下图的消息队列就包含了定时器消息和用户输入消息。
 
-![](http://7xprgn.com1.z0.glb.clouddn.com/event-loop-example.png)
+![](https://webdev.dartlang.org/articles/performance/images/event-loop-example.png)
 
 上述的这些概念你可能已经驾轻就熟了，那接下来我们就讨论一下这些概念在Dart中是怎么表现的？
 
@@ -48,7 +48,7 @@ date: 2018-08-31 17:39:51
 
 正如下图所示，当一个Dart应用开始的标志是它的main isolate执行了main方法。当main方法退出后，main isolate的线程就会去逐一处理消息队列中的消息。
 
-![](http://7xprgn.com1.z0.glb.clouddn.com/event-loop-and-main.png)
+![](https://webdev.dartlang.org/articles/performance/images/event-loop-and-main.png)
 
 事实上，上图是经过简化的流程。
 
@@ -64,7 +64,7 @@ event队列包含Dart和来自系统其它位置的事件。但microtask队列�
 
 正如下面的流程图，当main方法退出后，event循环就开始它的工作。首先它会以FIFO的顺序执行micro task，当所有micro task执行完后它会从event 队列中取事件并执行。如此反复，直到两个队列都为空。
 
-![](http://7xprgn.com1.z0.glb.clouddn.com/both-queues.png)
+![](https://webdev.dartlang.org/articles/performance/images/both-queues.png)
 
 > 注意：当事件循环正在处理micro task的时候。event队列会被堵塞。这时候app就无法进行UI绘制，响应鼠标事件和I/O等事件
 
@@ -113,7 +113,7 @@ future.then(...set an important variable...)
 有可能的还是尽量使用Future来向event队列添加事件。使用event队列可以保持microtask队列的简短，以此减少microtask的过度使用导致event队列的堵塞。
 如果一个任务确实要在event队列的任何一个事件前完成，那么你应该尽量直接写在main方法中而不是使用这两个队列。如果你不能那么就用scheduleMicrotask来向microtask添加一个微任务。
 
-![](http://7xprgn.com1.z0.glb.clouddn.com/scheduling-tasks.png)
+![](https://webdev.dartlang.org/articles/performance/images/scheduling-tasks.png)
 
 ### Event队列
 
